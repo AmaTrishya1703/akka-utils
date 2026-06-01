@@ -1,4 +1,4 @@
-import { command } from "@akka-bot/sdk";
+import type { CommandDefinition } from "@akka-bot/sdk";
 
 // Faktor konversi ke satuan dasar (Meter untuk panjang, Gram untuk massa)
 const lengthUnits: Record<string, number> = {
@@ -51,7 +51,7 @@ const SUPPORTED_UNITS_TEXT =
   "⚖️ Massa: pg, ng, ug (μg), mg, g, kg\n" +
   "🌡️ Suhu: c (C), f (F), k (K)";
 
-export default command({
+const convertCommand: CommandDefinition = {
   name: "Convert",
   description: "Mengonversi satuan Panjang, Massa, dan Suhu",
   usage: ".convert [nilai] [dari] [ke]",
@@ -131,4 +131,6 @@ export default command({
       await ctx.send(`❌ Error: ${error.message}`);
     }
   },
-});
+};
+
+export default convertCommand;

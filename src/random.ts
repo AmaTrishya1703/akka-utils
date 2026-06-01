@@ -1,6 +1,6 @@
-import { command } from "@akka-bot/sdk";
+import type { CommandDefinition } from "@akka-bot/sdk";
 
-export default command({
+const randomCommand: CommandDefinition = {
   name: "Random",
   description: "Menghasilkan angka acak antara min dan max (default 1-100)",
   usage: ".random [min] [max]",
@@ -45,4 +45,6 @@ export default command({
       await ctx.send(`❌ Error: ${error.message}`);
     }
   },
-});
+};
+
+export default randomCommand;

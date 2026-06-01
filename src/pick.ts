@@ -1,4 +1,4 @@
-import { command } from "@akka-bot/sdk";
+import type { CommandDefinition } from "@akka-bot/sdk";
 
 /**
  * Robust argument parser that supports single/double quotes for arguments with spaces.
@@ -21,7 +21,7 @@ function parseArguments(message: string): string[] {
   return args;
 }
 
-export default command({
+const pickCommand: CommandDefinition = {
   name: "Pick",
   description: "Memilih item secara acak dari daftar pilihan",
   usage: ".pick [item1] [item2] ...",
@@ -48,4 +48,6 @@ export default command({
       await ctx.send(`❌ Error: ${error.message}`);
     }
   },
-});
+};
+
+export default pickCommand;
