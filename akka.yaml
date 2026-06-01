@@ -1,0 +1,17 @@
+version: "1.0"
+commands:
+  - slug: random
+    name: Random
+    description: Menghasilkan angka acak antara min dan max (default 1-100)
+    usage: ".random [min] [max]"
+    entryPoint: src/random.ts
+  - slug: pick
+    name: Pick
+    description: Memilih item secara acak dari daftar pilihan
+    usage: ".pick [item1] [item2] ..."
+    entryPoint: src/pick.ts
+  - slug: convert
+    name: Convert
+    description: Mengonversi satuan Panjang, Massa, dan Suhu
+    usage: ".convert [nilai] [dari] [ke]"
+    entryPoint: src/convert.ts
