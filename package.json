@@ -1,0 +1,17 @@
+{
+  "name": "akka-utils",
+  "version": "1.0.0",
+  "description": "Utility commands for the Akka WhatsApp marketplace",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@akka-bot/sdk": "^0.1.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.0"
+  }
+}
