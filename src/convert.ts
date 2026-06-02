@@ -1,4 +1,5 @@
 import type { CommandDefinition } from "@akka-bot/sdk";
+import { formatNumber } from "./helpers";
 
 // Faktor konversi ke satuan dasar (Meter untuk panjang, Gram untuk massa)
 const lengthUnits: Record<string, number> = {
@@ -120,8 +121,7 @@ const convertCommand: CommandDefinition = {
         }
       }
 
-      // Memformat hasil: maksimal 4 angka di belakang koma, hapus trailing zero
-      const formattedValue = Number(resultValue.toFixed(4));
+      const formattedValue = formatNumber(resultValue, 4);
 
       const fromDisplay = getUnitDisplayName(fromUnit);
       const toDisplay = getUnitDisplayName(toUnit);

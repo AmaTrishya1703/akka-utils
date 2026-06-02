@@ -1,4 +1,5 @@
 import type { CommandDefinition } from "@akka-bot/sdk";
+import { clampToSafeInteger } from "./helpers";
 
 const randomCommand: CommandDefinition = {
   name: "Random",
@@ -9,30 +10,16 @@ const randomCommand: CommandDefinition = {
       let min = 1;
       let max = 100;
 
-      if (ctx.args.length > 0) {
-        if (ctx.args.length > 2) {
-          await ctx.send("❌ Error: Maksimal hanya menerima 2 argumen untuk .random (min dan max).");
-          return;
-        }
+      if (ctx.args.length > 2) {
+        await ctx.send("❌ Error: Maksimal hanya menerima 2 argumen untuk .random (min dan max).");
+        return;
+      }
 
-        const parsedArgs = ctx.args.map((arg) => {
-          const num = Number(arg);
-          if (isNaN(num)) {
-            throw new Error(`Argumen '${arg}' bukan angka yang valid.`);
-          }
-          if (Math.abs(num) > Number.MAX_SAFE_INTEGER) {
-            throw new Error(`Angka '${arg}' terlalu besar (melebihi batas maksimal aman).`);
-          }
-          return Math.floor(num);
-        });
-
-        if (parsedArgs.length === 1) {
-          min = 1;
-          max = parsedArgs[0]!;
-        } else {
-          min = parsedArgs[0]!;
-          max = parsedArgs[1]!;
-        }
+      if (ctx.args.length === 1) {
+        max = clampToSafeInteger(Number(ctx.args[0]));
+      } else if (ctx.args.length === 2) {
+        min = clampToSafeInteger(Number(ctx.args[0]));
+        max = clampToSafeInteger(Number(ctx.args[1]));
       }
 
       if (min > max) {

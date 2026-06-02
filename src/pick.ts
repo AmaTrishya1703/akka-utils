@@ -1,25 +1,5 @@
 import type { CommandDefinition } from "@akka-bot/sdk";
-
-/**
- * Robust argument parser that supports single/double quotes for arguments with spaces.
- */
-function parseArguments(message: string): string[] {
-  const trimmed = message.trim();
-  const firstSpace = trimmed.indexOf(" ");
-  if (firstSpace === -1) return [];
-
-  const argsText = trimmed.substring(firstSpace).trim();
-  const args: string[] = [];
-  const regex = /"([^"]*)"|'([^']*)'|([^\s"']+)/g;
-  let match;
-  while ((match = regex.exec(argsText)) !== null) {
-    const val = match[1] !== undefined ? match[1] : (match[2] !== undefined ? match[2] : match[3]);
-    if (val !== undefined) {
-      args.push(val);
-    }
-  }
-  return args;
-}
+import { parseQuotedArgs } from "./helpers";
 
 const pickCommand: CommandDefinition = {
   name: "Pick",
@@ -27,8 +7,7 @@ const pickCommand: CommandDefinition = {
   usage: ".pick [item1] [item2] ...",
   async handle(ctx) {
     try {
-      // Menggunakan parser kustom untuk mendukung tanda kutip pada item berspasi
-      const items = parseArguments(ctx.message);
+      const items = parseQuotedArgs(ctx.message);
 
       if (items.length < 2) {
         await ctx.send("❌ Error: Masukkan minimal 2 pilihan.");

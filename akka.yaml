@@ -15,3 +15,48 @@ commands:
     description: Mengonversi satuan Panjang, Massa, dan Suhu
     usage: ".convert [nilai] [dari] [ke]"
     entryPoint: src/convert.ts
+  - slug: qr
+    name: QR
+    description: Generate QR code dari teks atau URL
+    usage: ".qr [teks atau URL]"
+    entryPoint: src/qr.ts
+  - slug: kurs
+    name: Kurs
+    description: Cek kurs mata uang terkini atau konversi nilai antar mata uang
+    usage: ".kurs [mata_uang_asal] [mata_uang_tujuan]\n.kurs [nilai] [mata_uang_asal] [mata_uang_tujuan]"
+    entryPoint: src/kurs.ts
+  - slug: cuaca
+    name: Cuaca
+    description: Cek cuaca terkini suatu kota
+    usage: ".cuaca [nama_kota]"
+    entryPoint: src/cuaca.ts
+  - slug: negara
+    name: Negara
+    description: Cari informasi umum tentang sebuah negara
+    usage: ".negara [nama_negara]"
+    entryPoint: src/negara.ts
+  - slug: trivia
+    name: Trivia
+    description: Kuis trivia dengan pilihan ganda dari berbagai kategori
+    usage: ".trivia\n.trivia [kategori]"
+    entryPoint: src/trivia.ts
+  - slug: jawab
+    name: Jawab
+    description: Menjawab trivia aktif
+    usage: ".jawab [A/B/C/D]"
+    entryPoint: src/jawab.ts
+  - slug: wiki
+    name: Wiki
+    description: Cari ringkasan artikel Wikipedia tentang suatu topik
+    usage: ".wiki [topik]"
+    entryPoint: src/wiki.ts
+  - slug: quran
+    name: Quran
+    description: Baca ayat Al-Quran lengkap dengan teks Arab dan terjemahan Indonesia
+    usage: ".quran [nomor_surah] [nomor_ayat]\n.quran [nama_surah] [nomor_ayat]\n.quran random"
+    entryPoint: src/quran.ts
+  - slug: sholat
+    name: Sholat
+    description: Cek jadwal waktu sholat 5 waktu untuk suatu kota hari ini
+    usage: ".sholat [nama_kota]\n.sholat [nama_kota], [negara]"
+    entryPoint: src/sholat.ts
